@@ -15,13 +15,3 @@ def main():
     if os.path.exists(model_weights_path):
         voice_mimic.load_weights(model_weights_path)
 
-    # Synthesize voice
-    input_sequence = torch.zeros((1, config.num_classes, config.sequence_length))
-    synthesized_audio = synthesize(voice_mimic.model, input_sequence, length=1000)
-
-    # Save or play the synthesized audio (optional)
-    # save_audio('synthesized_audio.wav', synthesized_audio, sample_rate)
-    # play_audio(synthesized_audio, sample_rate)
-
-if __name__ == "__main__":
-    main()
