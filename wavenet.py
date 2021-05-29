@@ -53,13 +53,3 @@ class WaveNet(nn.Module):
         x = self.output_conv2(x)
         return x
 
-    def generate(self, input_sequence, length=1000):
-        with torch.no_grad():
-            generated_sequence = torch.zeros((input_sequence.shape[0], self.num_classes, length)).to(input_sequence.device)
-            generated_sequence[:, :, :input_sequence.shape[2]] = input_sequence
-            for i in range(input_sequence.shape[2], length):
-                input_slice = generated_sequence[:, :, i - self.kernel_size + 1:i]
-                output_slice = self.forward(input_slice)
-                predicted_sample = F.softmax(output_slice[:, :, -1], dim=1)
-                generated_sequence[:, :, i] = predicted_sample
-            return generated_sequence
