@@ -1,4 +1,14 @@
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 
+class ResidualBlock(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size, dilation):
+        super(ResidualBlock, self).__init__()
+        self.conv_dilated = nn.Conv1d(in_channels, out_channels, kernel_size, padding=dilation, dilation=dilation)
+        self.conv_residual = nn.Conv1d(in_channels, out_channels, kernel_size=1)
+        self.conv_skip = nn.Conv1d(out_channels, out_channels, kernel_size=1)
+        self.relu = nn.ReLU()
 
     def forward(self, x):
         output = self.relu(self.conv_dilated(x) + self.conv_residual(x))
