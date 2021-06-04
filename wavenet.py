@@ -15,17 +15,7 @@ class ResidualBlock(nn.Module):
         skip = self.conv_skip(output)
         return output, skip
 
-class WaveNet(nn.Module):
-    def __init__(self, num_classes, num_layers, num_blocks, kernel_size, residual_channels, dilation_channels, skip_channels, output_channels):
-        super(WaveNet, self).__init__()
-        self.num_classes = num_classes
-        self.num_layers = num_layers
-        self.num_blocks = num_blocks
-        self.kernel_size = kernel_size
-        self.residual_channels = residual_channels
-        self.dilation_channels = dilation_channels
-        self.skip_channels = skip_channels
-        self.output_channels = output_channels
+
         
         self.input_conv = nn.Conv1d(num_classes, residual_channels, kernel_size=1)
         self.conv_blocks = nn.ModuleList()
