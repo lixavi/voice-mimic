@@ -38,7 +38,20 @@ class WaveNet(nn.Module):
         self.output_conv1 = nn.Conv1d(skip_channels, output_channels, kernel_size=1)
         self.output_conv2 = nn.Conv1d(output_channels, num_classes, kernel_size=1)
 
-
+    def forward(self, x):
+        x = self.input_conv(x)
+        skip_connections = []
+        for block in self.conv_blocks:
+            x, skip = block(x)
+            skip_connections.append(skip)
+        skip_sum = sum(skip_connections)
+        x = self.relu(skip_sum)
+        x = self.skip_conv(x)
+        x = self.relu(x)
+        x = self.output_conv1(x)
+        x = self.relu(x)
+        x = self.output_conv2(x)
+        return x
 
     def generate(self, input_sequence, length=1000):
         with torch.no_grad():
