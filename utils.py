@@ -1,4 +1,8 @@
+import os
+import numpy as np
+import soundfile as sf
 
+def save_audio(filename, audio_data, sample_rate):
     """
     Save audio data to a file.
 
