@@ -1,9 +1,4 @@
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from tqdm import tqdm
-from dataset import prepare_dataset
-from models.wavenet import WaveNet
+
 
 def train(model, train_data, sequence_length, batch_size, num_epochs, learning_rate):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
