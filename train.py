@@ -5,7 +5,11 @@ from tqdm import tqdm
 from dataset import prepare_dataset
 from models.wavenet import WaveNet
 
-
+def train(model, train_data, sequence_length, batch_size, num_epochs, learning_rate):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     train_loader = prepare_dataset(train_data, sequence_length, batch_size)
 
