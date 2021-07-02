@@ -1,4 +1,10 @@
+import torch
+from models.wavenet import WaveNet
 
+def synthesize(model, input_sequence, length):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
+    model.eval()
 
     input_sequence = input_sequence.unsqueeze(0).to(device)
     generated_sequence = model.generate(input_sequence, length=length)
