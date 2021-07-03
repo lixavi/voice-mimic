@@ -18,15 +18,4 @@ def main():
     model = WaveNet(your_model_parameters)
     model.load_state_dict(torch.load(model_path))
     
-    # Define your input sequence here
-    input_sequence = torch.zeros(your_input_sequence_shape)
 
-    # Synthesize voice
-    synthesized_audio = synthesize(model, input_sequence, length=1000)
-
-    # Save or play the synthesized audio
-    # Example: save to a WAV file
-    # torch.save(synthesized_audio, 'synthesized_audio.wav')
-
-if __name__ == "__main__":
-    main()
