@@ -1,4 +1,9 @@
+# VoiceMimic
+Voice cloning system employing WaveNet, a deep generative model of raw audio waveforms for voice synthesis.
 
+## Overview
+
+VoiceMimic utilizes the WaveNet architecture to synthesize realistic human-like voices. It takes an input audio sequence and generates a new sequence of audio samples that mimic the input voice. The system can be trained on a dataset of audio recordings to learn the characteristics of a particular voice and then generate new audio samples that resemble the input voice.
 
 ## Components
 
