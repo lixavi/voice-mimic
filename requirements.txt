@@ -1,0 +1,4 @@
+torch>=1.9.0
+numpy>=1.21.0
+soundfile>=0.10.3
+tqdm>=4.62.3
